@@ -27,10 +27,18 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
-    - name: Run tests
+    - name: Debug pytest discovery
       run: |
-        export PYTHONPATH=$PWD
-        pytest -v
+        pwd
+        echo "---- ls ----"
+        ls
+        echo "---- ls tests ----"
+        ls tests
+        echo "---- show test file ----"
+        sed -n '1,200p' tests/test_math.py
+        echo "---- pytest collect ----"
+        pytest --collect-only -v
+
 
 
 
